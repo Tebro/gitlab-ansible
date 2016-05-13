@@ -1,0 +1,6 @@
+---
+- hosts: gitlab
+  become: yes
+  tags: gitlab
+  roles:
+    - gitlab

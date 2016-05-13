@@ -1,0 +1,22 @@
+---
+- name: Install dependencies
+  apt:
+    name: "{{ item }}"
+    update_cache: yes
+  with_items:
+    - curl
+    - openssh-server
+    - ca-certificates
+    - postfix
+
+- name: Set package source
+  shell: curl -sS https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.deb.sh | sudo bash
+
+- name: Install gitlab
+  apt:
+    name: gitlab-ce
+    update_cache: yes
+
+
+- name: Configure gitlab
+  shell: gitlab-ctl reconfigure
